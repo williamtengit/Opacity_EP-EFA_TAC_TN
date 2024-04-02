@@ -83,15 +83,15 @@ class StateMachine:
         self.initial_state = None
 
     def add_state(self, state):
-        """添加状态到状态机"""
+        """add a state to FA model"""
         self.states[state.name] = state
 
     def set_initial_state(self, initial_state_name):
-        """设置初始状态"""
+        """set the initial state"""
         self.initial_state = self.states[initial_state_name]
 
     def draw(self, output_file="fsm.png", format="png"):
-        """绘制自动机"""
+        """draw the FA model"""
         graph = graphviz.Digraph(format=format)
         for state in self.states.values():
             graph.node(state.name)
