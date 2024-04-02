@@ -29,11 +29,12 @@ execution time of the program.
 By changing the "Max_Domain = 40" to other numbers in the files of "FA_model1.py" and "FA_model1_reverse.py", one can set the finite
 domain of the event parameters.
 
-The total running time in my computer is as follows (When the total running time exceeds 300 seconds, we will consider the program timed out.).
+The total running time in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) is as follows.
 
 	Table 1 : The total execution times for the verfication of opacity properties of EP-EFA and FA models in finite domains
 ![total_time](https://github.com/williamtengit/Opacity_EP-EFA_TAC_TN/assets/68321173/edba36fb-9ddd-4fd4-9f2e-3e0b4628abda)
 
+Note: When the total execution time exceeds 300 seconds, we consider the program Timed Out.
 
 From the table, it can be seen that the opacity verification complexity of EP-EFA is basically independent of the data domain, while for FA, opacity verification becomes almost infeasible when the data domain is large. 
 This suggests that the EP-EFA model is more suitable for characterizing data flow in the system compared to the FA model.
