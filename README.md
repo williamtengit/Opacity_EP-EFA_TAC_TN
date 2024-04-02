@@ -19,3 +19,16 @@ and the FAs are shown below.
 ![fsm_reverse png](https://github.com/williamtengit/Opacity_EP-EFA_TAC_TN/assets/68321173/3378e3d4-d390-4a85-aadb-cbb6ed40126f)
 
                                     Fig 3. the reverse of the FA shown in Fig 2.
+
+By running "test_EFA_Opacity.py" in PyCharm, one can obtain the opacity properties of EFA described in "EFA_model1.py", and the total
+running time of the program.
+
+By running "test_FA_Opacity.py" in PyCharm, one can obtain the opacity properties of FA described in "FA_model1.py", and the total
+running time of the program.
+By changing the "Max_Domain = 40" to other numbers in the files of "FA_model1.py" and "FA_model1_reverse.py", one can set the finite
+domain of the event parameters.
+
+The total running time in my computer is as follows.
+
+
+
