@@ -53,13 +53,10 @@ def allSolution(solver):
         model = solver.model()
         solutions.append(model)
         block = []
-        # print("========================");
         for d in model:
             # print(i, end=" ")
             i = i + 1
             c = d()
-            # print(c,end=" ")
-            # print(d)
             block.append(c != model[d])
         solver.add(Or(block))
     return solutions
@@ -170,7 +167,6 @@ def constuctReverseFA():
                 stateset["q2"].add_transition(str(sol[x2]), stateset["q2_"+str(xvalue)])
 
     for state in stateset:
-        # print(state)
         FA_model.add_state(stateset[state])
     # FA_model.draw()
 

@@ -1,56 +1,38 @@
 from itertools import chain, combinations
 from z3 import *
-import time
 import FA_model1
 import FA_model1_reverse
 
 # epsilon-reach function
 def ereach(qobs, FA):
     qobs_done = set()
-    #print(qobs)
     while qobs - qobs_done != set():
         for q in qobs - qobs_done:
-            # print(FA.FA_model.states[q], " ===> ", FA.FA_model.states[q].transitions)
             for transition in FA.FA_model.states[q].transitions:
-                #print(i, " ", T[i - 1][0])
                 if FA.theta(int(transition[0])) == False:
                     if transition[1] not in qobs:
                         qobs.add(transition[1].name)
             qobs_done.add(q)
     return tuple(qobs)
-#
-# q0_obs = ereach(FA_model1.q_0,FA_model1)
-# print( q0_obs )
 
 
 # generate the set of states of the observer for a FA_model
 def genObserver(q_0_obs, FA):
-
     Q_obs_done.clear()
     Q_obs.clear()
     q0_obs = ereach(q_0_obs, FA)
-    # print(q0_obs)
     Q_obs.add(q0_obs)
-    #
-    # print(Q_obs)
-
     while Q_obs - Q_obs_done != set():
-        # new_state = set()
-        # print("1111111111111",Q_obs)
         for q_obs in Q_obs - Q_obs_done:
-            # print("q_obs:        ",q_obs)
             for obs_x in FA.all_obs_x:
                 new_obs_state = set()
                 for q in q_obs:
                     for tran in FA.FA_model.states[q].transitions:
                         if tran[0] == obs_x:
                             new_obs_state.add(tran[1].name)
-                            # print(q, "===========", obs_x, "_________>", tran[1])
                 new_obs_state = ereach(new_obs_state, FA)
-                # print(q_obs, obs_x, "===============>", tuple(new_obs_state))
                 if new_obs_state != set() and all( set(new_obs_state) != set(tup) for tup in Q_obs ):
                     Q_obs.add(tuple(new_obs_state))
-                    # print(q_obs, obs_x, "===============>", tuple(new_obs_state))
             Q_obs_done.add(q_obs)
 
 # the function for the verification of current state opacity of FA_Model,
@@ -60,7 +42,6 @@ def genObserver(q_0_obs, FA):
 def cso(Q_ns, Q_s):
     for q_obs in Q_obs:
         if set(q_obs).intersection(Q_ns) != set() and set(q_obs).intersection(Q_s) == set():
-            # print(q_obs)
             return False;
     return True;
 

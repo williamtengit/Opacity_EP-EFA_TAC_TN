@@ -7,7 +7,6 @@ start_time = time.time()
 
 # run the py program
 script_path = r"D:\PYprojects\Opacity_EP-EFA_TAC_TN\EFA_Opacity.py"
-# script_path = r"D:\PYprojects\Opacity_EP-EFA_TAC_TN\FA_Opacity.py"
 subprocess.run([sys.executable, script_path])
 
 # end time

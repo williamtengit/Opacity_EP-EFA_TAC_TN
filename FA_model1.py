@@ -167,7 +167,6 @@ def constuctFA():
                 stateset["q2_"+str(xvalue)].add_transition(str(sol[x2]), stateset["q2"])
 
     for state in stateset:
-        # print(state)
         FA_model.add_state(stateset[state])
     # FA_model.draw()
 
