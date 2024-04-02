@@ -8,6 +8,8 @@ The current files are for the EP-EFA as shown below.
 
 Fig 1. the EFA described by the current file of "EFA_model1.py"
 
+Also, one can construct the new files of "EFA_model1.py" and "EFA_model1_reverse.py" for his EP-EFA model followed by this example. 
+
 The files of "FA_model1.py" and "FA_model1_reverse.py" are for the FAs counterparts of the EP-EFA.
 The current files are for the FA and its reverse FA corresponding to the EP-EFA described by "EFA_model1.py", 
 and the FAs are shown below.
@@ -30,7 +32,8 @@ domain of the event parameters.
 
 The total running time in my computer is as follows (When the total running time exceeds 300 seconds, we will consider the program timed out.).
 
-![total_time](https://github.com/williamtengit/Opacity_EP-EFA_TAC_TN/assets/68321173/a2505115-6b3c-4a7d-adc2-f5f3f4bcb223)
+![total_time](https://github.com/williamtengit/Opacity_EP-EFA_TAC_TN/assets/68321173/edba36fb-9ddd-4fd4-9f2e-3e0b4628abda)
+
 
 From the table, it can be seen that the opacity verification complexity of EP-EFA is basically independent of the data domain, while for FA, opacity verification becomes almost infeasible when the data domain is large. 
 This suggests that the EP-EFA model is more suitable for characterizing data flow in the system compared to the FA model.
