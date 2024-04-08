@@ -1,4 +1,4 @@
-This is a program for the opacity verification of the Extended Finite Autoamta with Event Parameters(EP-EFAs), 
+This is a python  ( version >= 3.10)  programfor the opacity verification of the Extended Finite Autoamta with Event Parameters(EP-EFAs), 
 and their Finite Automata(FA) counterpart with finite domains.
 
 The files of "EFA_model1.py" and "EFA_model1_reverse.py" are for a specific EP-EFA and its reverse EP-EFA. 
