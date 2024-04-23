@@ -91,9 +91,10 @@ class StateMachine:
         """set the initial state"""
         self.initial_state = self.states[initial_state_name]
 
-    def draw(self, output_file="fsm.png", format="png"):
+    def draw(self, output_file="fsm2.png", format="png"):
         """draw the FA model"""
-        graph = graphviz.Digraph(format=format)
+        graph = graphviz.Digraph(format=format,engine='dot')
+        graph.attr('graph', ranksep='2.0')
         for state in self.states.values():
             graph.node(state.name)
             for input_symbol, next_state in state.transitions:
@@ -169,7 +170,7 @@ def constuctFA():
 
     for state in stateset:
         FA_model.add_state(stateset[state])
-    # FA_model.draw()
+    #FA_model.draw()
 
 
 # secret state set and non-secret state set for current state opacity
@@ -182,3 +183,5 @@ Q_ns_infinite = set({"q4"})
 
 # initial state set
 q_0 = set({"q0"})
+
+#constuctFA()
