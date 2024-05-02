@@ -32,7 +32,7 @@ domains of the event parameters.
 The total running time in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) is as follows.
 
 	Table 1 : The total execution times for the verfication of opacity properties of EP-EFA and FA models in finite domains
-![total_time](https://github.com/williamtengit/Opacity_EP-EFA_TAC_TN/assets/68321173/edba36fb-9ddd-4fd4-9f2e-3e0b4628abda)
+![totaltime_with_title](https://github.com/williamtengit/Opacity_EP-EFA_TAC_TN/assets/68321173/36c3a795-36dd-4cb1-8709-4e7f709b0ab2)
 
 	Note: When the total execution time exceeds 300 seconds, we consider the program Timed Out. 
  	The "sys.maxsize" is the largest integer 2^63 - 1 = 9223372036854775807 in Python.
