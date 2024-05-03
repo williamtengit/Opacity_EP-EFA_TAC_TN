@@ -2,6 +2,8 @@ from itertools import chain, combinations
 from z3 import *
 import sys
 
+
+
 Max_Domain = sys.maxsize
 # domain function for the first parameter
 def domain1(x):

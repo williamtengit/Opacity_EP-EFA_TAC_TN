@@ -4,41 +4,7 @@ import graphviz
 
 Max_Domain = 40
 # domain function for the first parameter
-def domain1(x1):
-    return And(x1 > 0, x1 <= Max_Domain)
 
-# domain function for the second parameter
-def domain2(x2):
-    return And(x2 > 0, x2 <= Max_Domain)
-
-# observation function for the parameter
-def theta(x):
-    return x >= 5
-
-
-# the condition for the "t1" transition
-def phi1(x):
-    return x < 4
-
-# the condition for the "t2" transition
-def phi2(x, y):
-    return x + y > 9
-
-# the condition for the "t3" transition
-def phi3(x, y):
-    return And(y == x + 1, x > 3)
-
-# the condition for the "t4" transition
-def phi4(x):
-    return x < 7
-
-# the condition for the "t5" transition
-def phi5(x):
-    return True
-
-# the condition for the "t6" transition
-def phi6(x):
-    return True
 
 # the function return all solutions for a solver
 def allSolution(solver):
@@ -100,6 +66,43 @@ class StateMachine:
             for input_symbol, next_state in state.transitions:
                 graph.edge(state.name, next_state.name, label=input_symbol)
         graph.render(output_file, format=format, cleanup=True, view=True)
+
+
+
+def domain1(x1):
+    return And(x1 > 0, x1 <= Max_Domain)
+
+# domain function for the second parameter
+def domain2(x2):
+    return And(x2 > 0, x2 <= Max_Domain)
+
+# observation function for the parameter
+def theta(x):
+    return x >= 5
+
+# the condition for the "t1" transition
+def phi1(x):
+    return x < 4
+
+# the condition for the "t2" transition
+def phi2(x, y):
+    return x + y > 9
+
+# the condition for the "t3" transition
+def phi3(x, y):
+    return And(y == x + 1, x > 3)
+
+# the condition for the "t4" transition
+def phi4(x):
+    return x < 7
+
+# the condition for the "t5" transition
+def phi5(x):
+    return True
+
+# the condition for the "t6" transition
+def phi6(x):
+    return True
 
 
 #define global variables
