@@ -2,7 +2,7 @@ from itertools import chain, combinations
 from z3 import *
 import graphviz
 
-Max_Domain = 40
+Max_Domain = 8
 # domain function for the first parameter
 
 
@@ -78,15 +78,15 @@ def domain2(x2):
 
 # observation function for the parameter
 def theta(x):
-    return x >= 5
+    return x >= 4
 
 # the condition for the "t1" transition
 def phi1(x):
-    return x < 4
+    return x < 12
 
 # the condition for the "t2" transition
 def phi2(x, y):
-    return x + y > 9
+    return x > (2*y - 9)
 
 # the condition for the "t3" transition
 def phi3(x, y):
@@ -94,16 +94,15 @@ def phi3(x, y):
 
 # the condition for the "t4" transition
 def phi4(x):
-    return x < 7
+    return x > 3
 
 # the condition for the "t5" transition
 def phi5(x):
-    return True
+    return x == 7
 
 # the condition for the "t6" transition
 def phi6(x):
-    return True
-
+    return x > 2
 
 #define global variables
 FA_model = StateMachine()
@@ -121,7 +120,6 @@ solver.reset()
 solver.add(And(theta(x1), domain1(x1)))
 for sol in allSolution(solver):
     all_obs_x.add(str(sol[x1]))
-
 
 #construct function for  FA objects
 def constuctFA():
@@ -174,20 +172,18 @@ def constuctFA():
 
     for state in stateset:
         FA_model.add_state(stateset[state])
-   # FA_model.draw()
-
+    FA_model.draw()
 
 #state set in EFA
 Q_efa = set({"q0", "q1", "q2", "q3", "q4"})
-
 
 # secret state set and non-secret state set for current state opacity
 Q_s = set({"q2"})
 Q_ns = set({"q0", "q1", "q3", "q4"})
 
 # secret state set and non-secret state set for infinite step opacity
-Q_s_infinite = set({"q3"})
-Q_ns_infinite = set({"q4"})
+Q_s_infinite = set({"q2", "q3", "q1"})
+Q_ns_infinite = set({"q0", "q4"})
 
 # initial state set
 q_0 = set({"q0"})

@@ -80,11 +80,11 @@ def phi1(x):
     return x < 4
 
 # the condition for the "t2" transition
-def phi2(x, y):
+def phi2(y, x):
     return x + y > 9
 
 # the condition for the "t3" transition
-def phi3(x, y):
+def phi3(y, x):
     return And(y == x + 1, x > 3)
 
 # the condition for the "t4" transition
@@ -171,10 +171,13 @@ def constuctReverseFA():
 
     for state in stateset:
         FA_model.add_state(stateset[state])
-    # FA_model.draw()
+   # FA_model.draw()
 
 # initial state set, secret state set and non-secret state set for initial state opacity
 # q_0 = set(stateset.keys())
+
+#state set in EFA
+Q_efa = set({"q0", "q1", "q2", "q3", "q4"})
 
 q_0 = set({"q0", "q1", "q2", "q3", "q4"})
 

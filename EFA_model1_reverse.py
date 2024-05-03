@@ -4,7 +4,6 @@ import sys
 
 Max_Domain = sys.maxsize
 
-
 # domain function for the first parameter
 def domain1(x):
     return And(x > 0, x < Max_Domain)
@@ -75,7 +74,6 @@ def construct_Reverse_EFA():
     T3.append(f300)
     T3.append(Or(f301, f310))
     T3.append(f311)
-
 
     f40 = Exists(x1, And(Not(theta(x1)), domain1(x1), phi4(x1)))
     f41 = And(theta(x1), domain1(x1), phi4(x1))

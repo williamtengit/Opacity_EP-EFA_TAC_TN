@@ -3,6 +3,7 @@ from z3 import *
 import sys
 
 Max_Domain = sys.maxsize
+
 # domain function for the first parameter
 def domain1(x):
     return And(x > 0, x < Max_Domain)
@@ -13,36 +14,35 @@ def domain2(x):
 
 # observation function for the parameter
 def theta(x):
-    return x >= 5
+    return x >= 4
 
 # the condition for the "t1" transition
 def phi1(x):
-    return x < 4
+    return x < 12
 
 # the condition for the "t2" transition
-def phi2(x, y):
-    return x + y > 9
+def phi2(y, x):
+    return x > (2*y - 9)
 
 # the condition for the "t3" transition
-def phi3(x, y):
+def phi3(y, x):
     return And(y == x + 1, x > 3)
 
 # the condition for the "t4" transition
 def phi4(x):
-    return x < 7
+    return x > 3
 
 # the condition for the "t5" transition
 def phi5(x):
-    return True
+    return x == 7
 
 # the condition for the "t6" transition
 def phi6(x):
-    return True
+    return x > 2
 
-# define the variables
-x11, x12, x1, x2 = Ints('x11 x12 x1 x2')
 
 # the observable transition set for "t1" - "t6", "t7" denotes the silent transition
+x11, x12, x1, x2 = Ints('x11 x12 x1 x2')
 T1 = []
 T2 = []
 T3 = []
@@ -52,8 +52,8 @@ T6 = []
 T7 = [True]
 T = list()
 
-# function for construct the EFA model in Example 2
-def construct_EFA():
+# function for construct the EFA model in Examples 3 - 4
+def construct_Reverse_EFA():
     f10 = Exists(x1, And(Not(theta(x1)), domain1(x1), phi1(x1)))
     f11 = And(theta(x1), domain1(x1), phi1(x1))
     T1.append(f10)
@@ -92,19 +92,12 @@ def construct_EFA():
 
     T.extend([T1, T2, T3, T4, T5, T6, T7])
 
-
-
-# initial state set
-q_0 = set({"q0"})
-
-# secret state set and non-secret state set for current state opacity
-Q_s  = set({"q2"})
-Q_ns = set({"q0", "q1", "q3", "q4"})
-
-# secret state set and non-secret state set for infinite step opacity
-Q_s_infinite  = set({"q3"})
-Q_ns_infinite = set({"q4"})
+# initial state set, secret state set and non-secret state set for initial state opacity
+q_0  = set({"q0", "q1", "q2", "q3","q4"})
+Q_s_initial  = set({"q2"})
+Q_ns_initial = set({"q0","q1"})
 
 # define the source and destination states for transitions
-src = {"q0": [1, 2], "q1": [3], "q3": [4], "q2": [5], "q4": [6]}
-des = {1: "q1", 2: "q3", 3: "q2", 4: "q4", 5: "q2", 6: "q4"}
+src = {"q0": [7], "q1": [1], "q3": [2], "q2": [3,5], "q4": [4,6]}
+des = {1: "q0", 2: "q0", 3: "q1", 4: "q3", 5: "q2", 6: "q4", 7: "q0"}
+

@@ -13,31 +13,40 @@ def domain2(x):
 
 # observation function for the parameter
 def theta(x):
-    return x >= 5
+    return x >= 6
 
 # the condition for the "t1" transition
 def phi1(x):
-    return x < 4
+    return x < 12
 
 # the condition for the "t2" transition
 def phi2(x, y):
-    return x + y > 9
+    return 2*y > (x - 9)
 
 # the condition for the "t3" transition
 def phi3(x, y):
-    return And(y == x + 1, x > 3)
+    return And(y == 2 * x + 1, y < 42)
 
 # the condition for the "t4" transition
 def phi4(x):
-    return x < 7
+    return And(x > 3, x < 7)
 
 # the condition for the "t5" transition
 def phi5(x):
-    return True
+    return And(x < 18, x > 4)
 
 # the condition for the "t6" transition
 def phi6(x):
-    return True
+    return And(x > 3, x < 23)
+
+def phi7(x,y):
+    return And(x > 33 - 2*x, x < 13)
+
+def phi8(x,y):
+    return Or(x > 3, y < 25)
+
+def phi9(x,y):
+    return And(x > 3, y < 3*x + 28)
 
 # define the variables
 x11, x12, x1, x2 = Ints('x11 x12 x1 x2')
@@ -102,8 +111,8 @@ Q_s  = set({"q2"})
 Q_ns = set({"q0", "q1", "q3", "q4"})
 
 # secret state set and non-secret state set for infinite step opacity
-Q_s_infinite  = set({"q3"})
-Q_ns_infinite = set({"q4"})
+Q_s_infinite  = set({"q2", "q3", "q1"})
+Q_ns_infinite = set({"q0", "q4"})
 
 # define the source and destination states for transitions
 src = {"q0": [1, 2], "q1": [3], "q3": [4], "q2": [5], "q4": [6]}

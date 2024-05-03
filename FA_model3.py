@@ -2,7 +2,7 @@ from itertools import chain, combinations
 from z3 import *
 import graphviz
 
-Max_Domain = 40
+Max_Domain = 8
 # domain function for the first parameter
 
 
@@ -69,6 +69,7 @@ class StateMachine:
 
 
 
+
 def domain1(x1):
     return And(x1 > 0, x1 <= Max_Domain)
 
@@ -78,32 +79,40 @@ def domain2(x2):
 
 # observation function for the parameter
 def theta(x):
-    return x >= 5
+    return x >= 6
 
 # the condition for the "t1" transition
 def phi1(x):
-    return x < 4
+    return x < 12
 
 # the condition for the "t2" transition
 def phi2(x, y):
-    return x + y > 9
+    return 2*y > (x - 9)
 
 # the condition for the "t3" transition
 def phi3(x, y):
-    return And(y == x + 1, x > 3)
+    return And(y == 2 * x + 1, y < 42)
 
 # the condition for the "t4" transition
 def phi4(x):
-    return x < 7
+    return And(x > 3, x < 7)
 
 # the condition for the "t5" transition
 def phi5(x):
-    return True
+    return And(x < 18, x > 4)
 
 # the condition for the "t6" transition
 def phi6(x):
-    return True
+    return And(x > 3, x < 23)
 
+def phi7(x,y):
+    return And(x > 33 - 2*x, x < 13)
+
+def phi8(x,y):
+    return Or(x > 3, y < 25)
+
+def phi9(x,y):
+    return And(x > 3, y < 3*x + 28)
 
 #define global variables
 FA_model = StateMachine()
@@ -121,7 +130,6 @@ solver.reset()
 solver.add(And(theta(x1), domain1(x1)))
 for sol in allSolution(solver):
     all_obs_x.add(str(sol[x1]))
-
 
 #construct function for  FA objects
 def constuctFA():
@@ -174,20 +182,18 @@ def constuctFA():
 
     for state in stateset:
         FA_model.add_state(stateset[state])
-   # FA_model.draw()
-
+    FA_model.draw()
 
 #state set in EFA
 Q_efa = set({"q0", "q1", "q2", "q3", "q4"})
-
 
 # secret state set and non-secret state set for current state opacity
 Q_s = set({"q2"})
 Q_ns = set({"q0", "q1", "q3", "q4"})
 
 # secret state set and non-secret state set for infinite step opacity
-Q_s_infinite = set({"q3"})
-Q_ns_infinite = set({"q4"})
+Q_s_infinite = set({"q2", "q3", "q1"})
+Q_ns_infinite = set({"q0", "q4"})
 
 # initial state set
 q_0 = set({"q0"})

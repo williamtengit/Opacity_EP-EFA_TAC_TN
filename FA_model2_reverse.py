@@ -2,7 +2,8 @@ from itertools import chain, combinations
 from z3 import *
 import graphviz
 
-Max_Domain = 40
+
+Max_Domain = 8
 # domain function for the first parameter
 
 
@@ -19,13 +20,10 @@ def allSolution(solver):
         model = solver.model()
         solutions.append(model)
         block = []
-        # print("========================");
         for d in model:
             # print(i, end=" ")
             i = i + 1
             c = d()
-            # print(c,end=" ")
-            # print(d)
             block.append(c != model[d])
         solver.add(Or(block))
     return solutions
@@ -37,6 +35,7 @@ class State:
         self.transitions = set()
 
     def add_transition(self, input_symbol, next_state):
+        """添加状态转移"""
         if (input_symbol, next_state) not in self.transitions:
             self.transitions.add((input_symbol, next_state))
 
@@ -50,17 +49,13 @@ class StateMachine:
         self.initial_state = None
 
     def add_state(self, state):
-        """add a state to FA model"""
         self.states[state.name] = state
 
     def set_initial_state(self, initial_state_name):
-        """set the initial state"""
         self.initial_state = self.states[initial_state_name]
 
-    def draw(self, output_file="fsm2.png", format="png"):
-        """draw the FA model"""
-        graph = graphviz.Digraph(format=format,engine='dot')
-        graph.attr('graph', ranksep='2.0')
+    def draw(self, output_file="fsm_reverse.png", format="png"):
+        graph = graphviz.Digraph(format=format)
         for state in self.states.values():
             graph.node(state.name)
             for input_symbol, next_state in state.transitions:
@@ -78,34 +73,34 @@ def domain2(x2):
 
 # observation function for the parameter
 def theta(x):
-    return x >= 5
+    return x >= 4
 
 # the condition for the "t1" transition
 def phi1(x):
-    return x < 4
+    return x < 12
 
 # the condition for the "t2" transition
-def phi2(x, y):
-    return x + y > 9
+def phi2(y, x):
+    return x > (2*y - 9)
 
 # the condition for the "t3" transition
-def phi3(x, y):
+def phi3(y, x):
     return And(y == x + 1, x > 3)
 
 # the condition for the "t4" transition
 def phi4(x):
-    return x < 7
+    return x > 3
 
 # the condition for the "t5" transition
 def phi5(x):
-    return True
+    return x == 7
 
 # the condition for the "t6" transition
 def phi6(x):
-    return True
-
+    return x > 2
 
 #define global variables
+x1, x2, x3, x4 = Ints('x1 x2 x3 x4')
 FA_model = StateMachine()
 stateset = {}
 stateset["q0"] = State("q0")
@@ -113,27 +108,28 @@ stateset["q1"] = State("q1")
 stateset["q2"] = State("q2")
 stateset["q3"] = State("q3")
 stateset["q4"] = State("q4")
+
 solver = Solver()
 solver.reset()
-x1, x2, x3, x4 = Ints('x1 x2 x3 x4')
 all_obs_x = set()
 solver.reset()
 solver.add(And(theta(x1), domain1(x1)))
 for sol in allSolution(solver):
     all_obs_x.add(str(sol[x1]))
+    solver.reset()
+    solver.add(And(theta(x1), domain1(x1)))
+    for sol in allSolution(solver):
+        all_obs_x.add(str(sol[x1]))
 
-
-#construct function for  FA objects
-def constuctFA():
+def constuctReverseFA():
     solver.reset()
     solver.add(And(phi1(x1),domain1(x1)))
     for sol in allSolution(solver):
-        stateset["q0"].add_transition(str(sol[x1]), stateset["q1"])
-
+        stateset["q1"].add_transition(str(sol[x1]), stateset["q0"])
     solver.reset()
     solver.add(And(phi4(x1),domain1(x1)))
     for sol in allSolution(solver):
-        stateset["q3"].add_transition(str(sol[x1]), stateset["q4"])
+        stateset["q4"].add_transition(str(sol[x1]), stateset["q3"])
 
     solver.reset()
     solver.add(And(phi5(x1),domain1(x1)))
@@ -153,11 +149,12 @@ def constuctFA():
         x1set.add(sol[x1])
     for xvalue in x1set:
         stateset["q3_"+str(xvalue)] = State("q3_"+str(xvalue))
-        stateset["q0"].add_transition(str(xvalue), stateset["q3_"+str(xvalue)])
+        stateset["q3_"+str(xvalue)].add_transition(str(xvalue), stateset["q0"])
     for sol in allsol:
         for xvalue in x1set:
             if sol[x1] == xvalue:
-                stateset["q3_"+str(xvalue)].add_transition(str(sol[x2]), stateset["q3"])
+                stateset["q3"].add_transition(str(sol[x2]), stateset["q3_"+str(xvalue)])
+
     solver.reset()
     solver.add(And(phi3(x1,x2),domain1(x1),domain2(x2)))
     x1set=set()
@@ -166,30 +163,23 @@ def constuctFA():
         x1set.add(sol[x1])
     for xvalue in x1set:
         stateset["q2_"+str(xvalue)] = State("q2_"+str(xvalue))
-        stateset["q1"].add_transition(str(xvalue), stateset["q2_"+str(xvalue)])
+        stateset["q2_"+str(xvalue)].add_transition(str(xvalue), stateset["q1"])
     for sol in allsol:
         for xvalue in x1set:
             if sol[x1] == xvalue:
-                stateset["q2_"+str(xvalue)].add_transition(str(sol[x2]), stateset["q2"])
+                stateset["q2"].add_transition(str(sol[x2]), stateset["q2_"+str(xvalue)])
 
     for state in stateset:
         FA_model.add_state(stateset[state])
-   # FA_model.draw()
+    FA_model.draw()
 
+# initial state set, secret state set and non-secret state set for initial state opacity
+# q_0 = set(stateset.keys())
 
 #state set in EFA
 Q_efa = set({"q0", "q1", "q2", "q3", "q4"})
 
+q_0 = set({"q0", "q1", "q2", "q3", "q4"})
 
-# secret state set and non-secret state set for current state opacity
-Q_s = set({"q2"})
-Q_ns = set({"q0", "q1", "q3", "q4"})
-
-# secret state set and non-secret state set for infinite step opacity
-Q_s_infinite = set({"q3"})
-Q_ns_infinite = set({"q4"})
-
-# initial state set
-q_0 = set({"q0"})
-
-#constuctFA()
+Q_s_initial  = set({"q2"})
+Q_ns_initial = set({"q0","q1"})

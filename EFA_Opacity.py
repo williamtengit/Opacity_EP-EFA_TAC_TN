@@ -4,6 +4,9 @@ from z3 import *
 import EFA_model1
 import EFA_model1_reverse
 
+
+# EFA_model1 = EFA_model3
+# EFA_model1_reverse = EFA_model3_reverse
 # powerset function for sets, return all non-empty subsets for a set.
 def powerset(iterable):
     s = list(iterable)
@@ -27,7 +30,9 @@ def ereach(qobs, EFA_model):
 def genObserver(q_0_obs, EFA_model):
     Q_obs_done.clear()
     Q_obs.clear()
+    # print(q_0_obs)
     q0_obs = ereach(q_0_obs, EFA_model1)
+    # print(q0_obs)
     Q_obs.add(q0_obs)
     while Q_obs - Q_obs_done != set():
         for q_obs in Q_obs - Q_obs_done:
@@ -52,6 +57,7 @@ def genObserver(q_0_obs, EFA_model):
                         new_obs_state = ereach(new_obs_state, EFA_model)
                         if all(set(new_obs_state) != set(tup) for tup in Q_obs):
                             Q_obs.add(new_obs_state)
+                            # print(q_obs,"-->", s.model()  ,"-->" ,new_obs_state)
             Q_obs_done.add(q_obs)
 
 
@@ -59,19 +65,21 @@ def genObserver(q_0_obs, EFA_model):
 # also for the verification of initial state opacity, as the latter can be reduced to the former.
 
  # Qns denotes the set of non-secret states, and Qs denotes the set of secret states
-def cso(Q_ns, Q_s):
+def cso( Q_s, Q_ns):
     for q_obs in Q_obs:
-        if set(q_obs).intersection(Q_ns) != set() and set(q_obs).intersection(Q_s) == set():
+        if set(q_obs).intersection(Q_ns) == set() and set(q_obs).intersection(Q_s) != set():
+            # print(q_obs, Q_s, Q_ns)
             return False;
     return True;
 
 # the function for verification of infinite step opacity for EFA_Model
 # Q_obs1 denotes the set of the states of observer, Q_obs1 denotes the set of the states of reverse observer,
 # Q_ns denotes the set of non-secret states, Q_s denotes the set of secret states
-def inf_step_opacity(Q_obs1,Q_obs2,Q_ns,Q_s):
+def inf_step_opacity(Q_obs1,Q_obs2,Q_s,Q_ns):
     for q_obs1 in Q_obs1:
         for q_obs2 in Q_obs2:
-            if (set(q_obs1).intersection(set(q_obs2))).intersection(Q_ns) != set() and (set(q_obs1).intersection(set(q_obs2))).intersection(Q_s) == set():
+            if (set(q_obs1).intersection(set(q_obs2))).intersection(Q_ns) == set() and (set(q_obs1).intersection(set(q_obs2))).intersection(Q_s) != set():
+                # print(q_obs1,q_obs2)
                 return False
     return True
 
