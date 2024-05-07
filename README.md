@@ -1,5 +1,5 @@
-This is a python  ( version >= 3.10)  programfor the opacity verification of the Extended Finite Autoamta with Event Parameters(EP-EFAs), 
-and their Finite Automata(FA) counterpart with finite domains.
+This is a python  ( version >= 3.10)  program for the opacity verification of the Extended Finite Automata with Event Parameters(EP-EFAs), 
+and their Finite Automata(FA) counterparts with finite data domains.
 
 The files of "EFA_model1.py" and "EFA_model1_reverse.py" are for a specific EP-EFA and its reverse EP-EFA. 
 The current files are for the EP-EFA as shown below.
@@ -34,10 +34,10 @@ The total running time in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) is
 	Table 1 : The total execution times for the verfication of opacity properties of EP-EFA and FA models in finite domains
 ![totaltime_with_title](https://github.com/williamtengit/Opacity_EP-EFA_TAC_TN/assets/68321173/36c3a795-36dd-4cb1-8709-4e7f709b0ab2)
 
-	Note: When the total execution time exceeds 300 seconds, we consider the program Timed Out. 
- 	The "sys.maxsize" is the largest integer 2^63 - 1 = 9223372036854775807 in Python.
+ 	
 
-From the table, it can be seen that the opacity verification complexity of EP-EFA is basically independent of the data domain, while for FA, opacity verification becomes almost infeasible when the data domain is large. 
+From the table, it can be seen that the opacity verification complexity of EP-EFA is basically independent of the data domain,
+while for FA, opacity verification becomes almost infeasible when the data domain is large. 
 This suggests that the EP-EFA model is more suitable for characterizing data flow in the system compared to the FA model.
 
 
