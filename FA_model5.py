@@ -205,4 +205,6 @@ Q_ns_infinite = set({"q0", "q4"})
 # initial state set
 q_0 = set({"q0"})
 
+
 #constuctFA()
+#update123

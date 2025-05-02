@@ -23,6 +23,7 @@ def phi1(x):
 def phi2(x, y):
     return x + y > 9
 
+
 # the condition for the "t3" transition
 def phi3(x, y):
     return And(y == x + 1, x > 3)

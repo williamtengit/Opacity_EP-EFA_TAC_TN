@@ -1,12 +1,20 @@
 import time
 from itertools import chain, combinations
 from z3 import *
-import EFA_model1
-import EFA_model1_reverse
+
+#import EFA_model1
+#import EFA_model1_reverse
+
+###### test the model EFA_model1_2
+import EFA_model1_2
+import EFA_model1_2_reverse
+EFA_model1 = EFA_model1_2
+EFA_model1_reverse = EFA_model1_2_reverse
+###### test the model EFA_model1_2
 
 
-# EFA_model1 = EFA_model3
-# EFA_model1_reverse = EFA_model3_reverse
+start_time = time.time()
+
 # powerset function for sets, return all non-empty subsets for a set.
 def powerset(iterable):
     s = list(iterable)
@@ -36,7 +44,7 @@ def genObserver(q_0_obs, EFA_model):
     Q_obs.add(q0_obs)
     while Q_obs - Q_obs_done != set():
         for q_obs in Q_obs - Q_obs_done:
-            for k in {1,2,3,4}:
+            for k in {1,2,3,4,5}:
                 T_k_obs_idx = set()
                 for q in q_obs:
                     for i in EFA_model.src[q]:
@@ -100,6 +108,10 @@ print("current state opaque: ", cso(EFA_model1.Q_s, EFA_model1.Q_ns), \
 Q_obs_obverse = Q_obs
 
 
+end_time1 = time.time()
+total_time1 = end_time1 - start_time
+print("Total execution time:", total_time1, "seconds")
+
 ####################################### Initial State Opacity verification ##################################
 EFA_model1_reverse.construct_Reverse_EFA()
 genObserver(EFA_model1_reverse.q_0, EFA_model1_reverse)
@@ -109,7 +121,14 @@ print("initial state opaque: ", cso(EFA_model1_reverse.Q_s_initial, EFA_model1_r
 Q_obs_reverse = Q_obs
 
 
+end_time2 = time.time()
+total_time2 = end_time2 - end_time1
+print("Total execution time:", total_time2, "seconds")
+
 ####################################### Infinite Step Opacity verification ##################################
 print("infinite step opaque: ", inf_step_opacity(Q_obs_obverse,Q_obs_reverse,EFA_model1.Q_s_infinite,EFA_model1.Q_ns_infinite), \
       "for Q_s=", EFA_model1.Q_s_infinite, "and Q_ns=", EFA_model1.Q_ns_infinite)
 
+end_time3 = time.time()
+total_time3 = end_time3 - start_time
+print("Total execution time:", total_time3, "seconds")

@@ -2,7 +2,7 @@ from itertools import chain, combinations
 from z3 import *
 import graphviz
 
-Max_Domain = 40
+Max_Domain = 100
 # domain function for the first parameter
 
 

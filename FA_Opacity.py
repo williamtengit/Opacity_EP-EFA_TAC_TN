@@ -2,6 +2,9 @@ from itertools import chain, combinations
 from z3 import *
 import FA_model1
 import FA_model1_reverse
+import time
+
+start_time = time.time()
 
 # FA_model1 = FA_model3
 # FA_model1_reverse = FA_model3_reverse
@@ -84,6 +87,9 @@ Q_obs_obverse = Q_obs
 # print("the state set of observer: ", Q_obs_obverse)
 
 
+end_time1 = time.time()
+total_time1 = end_time1 - start_time
+print("Total execution time:", total_time1, "seconds")
 
 ####################################### Initial State Opacity verification ##################################
 FA_model1_reverse.constuctReverseFA()
@@ -96,7 +102,17 @@ ys_state=("q0","q1","q2","q3","q4")
 # print("test");
 # print("the state set of reverse observer: ", all(set(qq_obs).intersection(set(ys_state)) for qq_obs in Q_obs_reverse))
 
+
+end_time2 = time.time()
+total_time2 = end_time2 - start_time
+print("Total execution time:", total_time2, "seconds")
+
+
 # ####################################### Infinite Step Opacity verification ##################################
 
 print("infinite step opaque: ", inf_step_opacity(Q_obs_obverse,Q_obs_reverse,FA_model1.Q_s_infinite,FA_model1.Q_ns_infinite), \
       "for Q_s=", FA_model1.Q_s_infinite, "and Q_ns=", FA_model1.Q_ns_infinite)
+
+end_time3 = time.time()
+total_time3 = end_time3 - end_time1
+print("Total execution time:", total_time3, "seconds")
