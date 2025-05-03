@@ -32,7 +32,8 @@ domains of the event parameters.
 The average running time in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) is as follows.
 
 	Table 1 : THE AVERAGE OF THE EXECUTION TIMES FOR THE VERIFICATION OF THREE OPACITY PROPERTIES
-![total_time](https://github.com/user-attachments/assets/e863f3d9-a888-4e0e-8f51-f13befd28455)
+![total_time](https://github.com/user-attachments/assets/a24b087b-04b1-4243-bbcc-76a87c267278)
+
 
  	
 
