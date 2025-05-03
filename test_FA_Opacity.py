@@ -15,4 +15,4 @@ end_time = time.time()
 
 # total time
 total_time = end_time - start_time
-print("Total execution time:", total_time, "seconds")
+print("Total execution time : ", total_time, "seconds")

@@ -5,12 +5,12 @@ from z3 import *
 #import EFA_model1
 #import EFA_model1_reverse
 
-###### test the model EFA_model1_2
-import EFA_model1_2
-import EFA_model1_2_reverse
-EFA_model1 = EFA_model1_2
-EFA_model1_reverse = EFA_model1_2_reverse
-###### test the model EFA_model1_2
+###### test the model EFA_model1_4
+import EFA_model1_4
+import EFA_model1_4_reverse
+EFA_model1 = EFA_model1_4
+EFA_model1_reverse = EFA_model1_4_reverse
+###### test the model EFA_model1_4
 
 
 start_time = time.time()
