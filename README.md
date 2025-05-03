@@ -32,7 +32,7 @@ domains of the event parameters.
 The average running times in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) are as follows.
 
 	Table 1 : The average of the execution times for the verification of three opacity properties
-![total_time](https://github.com/user-attachments/assets/cdb266b4-2583-4a80-946d-c9d5cffbcce4)
+![total_time](https://github.com/user-attachments/assets/1c751732-ce4e-400e-aae5-421cc3fd5099)
 
  	
 Although current-state opacity and initial-state opacity have the same complexity, the actual state space of the reverse EP-EFA’s observer is usually much larger than that of the EP-EFA’s observer, because all states of the reverse EP-EFA are initial states; therefore, the average verification time for initial-state
