@@ -32,13 +32,16 @@ domains of the event parameters.
 The total running time in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) is as follows.
 
 	Table 1 : The total execution times for the verfication of opacity properties of EP-EFA and FA models in finite domains
-![totaltime_with_title](https://github.com/williamtengit/Opacity_EP-EFA_TAC_TN/assets/68321173/36c3a795-36dd-4cb1-8709-4e7f709b0ab2)
+![total_time](https://github.com/user-attachments/assets/cdb266b4-2583-4a80-946d-c9d5cffbcce4)
 
  	
+Although current-state opacity and initial-state opacity have the same complexity, the actual state space of the reverse EP-EFA’s observer is usually much larger than that of the EP-EFA’s observer, because all states of the reverse EP-EFA are initial states; therefore, the average verification time for initial-state
+opacity is higher than that for current-state opacity. 
 
 From the table, it can be seen that the opacity verification complexity of EP-EFA is basically independent of the data domain,
 while for FA, opacity verification becomes almost infeasible when the data domain is large. 
-This suggests that the EP-EFA model is more suitable for characterizing data flow in the system compared to the FA model.
+This suggests that the EP-EFA model is more suitable for characterizing data flow in the system compared to the FA model. 
+
 
 
 
