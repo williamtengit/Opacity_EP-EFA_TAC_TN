@@ -29,9 +29,9 @@ execution time of the program.
 By changing the "Max_Domain = 40" in the files of "FA_model1.py" and "FA_model1_reverse.py", one can set the finite
 domains of the event parameters.
 
-The total running time in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) is as follows.
+The average running times in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) are as follows.
 
-	Table 1 : The total execution times for the verfication of opacity properties of EP-EFA and FA models in finite domains
+	Table 1 : The average of the execution times for the verification of three opacity properties
 ![total_time](https://github.com/user-attachments/assets/cdb266b4-2583-4a80-946d-c9d5cffbcce4)
 
  	
