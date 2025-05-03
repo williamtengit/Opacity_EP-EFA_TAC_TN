@@ -239,7 +239,7 @@ def construct_Reverse_EFA():
     T.extend([T1, T2, T3, T4, T5, T6, T11, T21, T31, T41, T51, T61, T12, T22, T32, T42, T52, T62, T71, T72, T7])
 
 # initial state set, secret state set and non-secret state set for initial state opacity
-q_0  = set({"q0", "q1", "q2", "q3","q4", "q01", "q11", "q21", "q31","q41", "q02", "q12", "q22", "q32","q42"})
+q_0  = set({"q0", "q1", "q2", "q3","q4", "q01", "q11", "q21", "q31","q41", "q02", "q12", "q22"})
 Q_s_initial  = set({"q2"})
 Q_ns_initial = set({"q0","q1"})
 

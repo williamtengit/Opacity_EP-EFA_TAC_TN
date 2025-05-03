@@ -29,11 +29,10 @@ execution time of the program.
 By changing the "Max_Domain = 40" in the files of "FA_model1.py" and "FA_model1_reverse.py", one can set the finite
 domains of the event parameters.
 
-The average running time in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) is as follows.
+The total running time in my computer (Intel i7-9700 3.00GHz CPU and 24G RAM) is as follows.
 
-	Table 1 : THE AVERAGE OF THE EXECUTION TIMES FOR THE VERIFICATION OF THREE OPACITY PROPERTIES
-![total_time](https://github.com/user-attachments/assets/a24b087b-04b1-4243-bbcc-76a87c267278)
-
+	Table 1 : The total execution times for the verfication of opacity properties of EP-EFA and FA models in finite domains
+![totaltime_with_title](https://github.com/williamtengit/Opacity_EP-EFA_TAC_TN/assets/68321173/36c3a795-36dd-4cb1-8709-4e7f709b0ab2)
 
  	
 
@@ -41,9 +40,6 @@ From the table, it can be seen that the opacity verification complexity of EP-EF
 while for FA, opacity verification becomes almost infeasible when the data domain is large. 
 This suggests that the EP-EFA model is more suitable for characterizing data flow in the system compared to the FA model.
 
-Although current-state opacity and initial-state opacity have the same complexity, the actual state space of the reverse EP-EFA’s
-observer is usually much larger than that of the EP-EFA’s observer, because all states of the reverse EP-EFA are initial
-states; therefore, the average verification time for initial-state opacity is higher than that for current-state opacity.
 
 
 

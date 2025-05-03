@@ -2,15 +2,15 @@ import time
 from itertools import chain, combinations
 from z3 import *
 
-#import EFA_model1
-#import EFA_model1_reverse
+import EFA_model1
+import EFA_model1_reverse
 
-###### test the model EFA_model1_4
-import EFA_model1_4
-import EFA_model1_4_reverse
-EFA_model1 = EFA_model1_4
-EFA_model1_reverse = EFA_model1_4_reverse
-###### test the model EFA_model1_4
+# ###### test the model EFA_model1_2
+# import EFA_model1_3
+# import EFA_model1_3_reverse
+# EFA_model1 = EFA_model1_3
+# EFA_model1_reverse = EFA_model1_3_reverse
+# ###### test the model EFA_model1_2
 
 
 start_time = time.time()

@@ -242,7 +242,7 @@ def construct_EFA():
 
 
 # initial state set
-q_0 = set({"q0","q01","q02"})
+q_0 = set({"q0","q01"})
 
 # secret state set and non-secret state set for current state opacity
 Q_s  = set({"q22","q41"})
